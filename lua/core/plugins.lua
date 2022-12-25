@@ -13,13 +13,21 @@ local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
+  use 'lewis6991/impatient.nvim'
+  use 'Darazaki/indent-o-matic'
   use 'ellisonleao/gruvbox.nvim'
   use 'nvim-tree/nvim-tree.lua'
-  use 'nvim-tree/nvim-web-devicons'
+use 'nvim-tree/nvim-web-devicons'
+use {'romgrk/barbar.nvim', wants = 'nvim-web-devicons'}
   use 'nvim-lualine/lualine.nvim'
   use 'nvim-treesitter/nvim-treesitter'
   use 'bluz71/vim-nightfly-colors'
   use 'vim-test/vim-test'
+  use "EdenEast/nightfox.nvim" 
+  use {'neoclide/coc.nvim', branch = 'release'}
+use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+  require("toggleterm").setup()
+end}
   use {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
@@ -30,7 +38,33 @@ return require('packer').startup(function(use)
     tag='0.1.0',
     requires = {{'nvim-lua/plenary.nvim'}}
   }
-
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end
+  }
+use {
+  'phaazon/hop.nvim',
+  branch = 'v2', -- optional but strongly recommended
+  config = function()
+    -- you can configure Hop the way you like here; see :h hop-config
+    require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+  end
+}
+-- lua with packer.nvim
+use {
+  "max397574/better-escape.nvim",
+  config = function()
+    require("better_escape").setup()
+  end,
+}
+use {
+'rcarriga/nvim-notify',
+config = function()
+  require('notify').setup()
+end,
+}
   -- My plugins here
   -- use 'foo1/bar1.nvim'
   -- use 'foo2/bar2.nvim'
